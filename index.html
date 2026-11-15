@@ -641,6 +641,7 @@
       <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">Prepare My Order ❤️</button>
       <div class="form-msg" id="formMsg">
         <h4>🎉 Your order summary is ready!</h4>
+        <div style="font-size:.85rem;margin:-2px 0 6px;color:var(--maroon)">Order ID: <b id="orderIdShow"></b></div>
         <p style="font-size:.88rem;color:var(--muted)">Send it to us on WhatsApp or email, and we'll confirm price, availability and delivery.</p>
         <pre id="summary"></pre>
         <div class="send-row">
@@ -865,8 +866,11 @@ document.getElementById('orderForm').addEventListener('submit',e=>{
   ['fName','fPhone','fAddress'].forEach(id=>document.getElementById(id).style.borderColor=missing.includes(id)?'#e8476b':'');
   if(missing.length){toast('Please fill the required fields *');return;}
   if(!basket.length){toast('Please add at least one gift 🎁');document.getElementById('products').scrollIntoView({behavior:'smooth'});return;}
+  const now=new Date(), pad=n=>String(n).padStart(2,'0');
+  const orderId='SAM-'+String(now.getFullYear()).slice(2)+pad(now.getMonth()+1)+pad(now.getDate())+'-'+Math.floor(1000+Math.random()*9000);
   const lines=[
-    '🌸 SAM – Smile Across Miles: Order Request','',
+    '🌸 SAM – Smile Across Miles: Order Request',
+    `Order ID: ${orderId} · via website`,'',
     'Gifts:',...basket.map((id,i)=>`  ${i+1}. ${ALL[id].name}`),
     v('fFlavour')?`Cake flavour: ${v('fFlavour')}`:null,'',
     `Occasion: ${v('fOccasion')}`,
@@ -879,10 +883,36 @@ document.getElementById('orderForm').addEventListener('submit',e=>{
   const text=lines.join('\n');
   document.getElementById('summary').textContent=text;
   document.getElementById('waSend').href='https://wa.me/919850007904?text='+encodeURIComponent(text);
-  document.getElementById('mailSend').href='mailto:samflowersngifts@gmail.com?subject='+encodeURIComponent('Order request – '+v('fOccasion')+' – '+v('fName'))+'&body='+encodeURIComponent(text);
+  document.getElementById('mailSend').href='mailto:samflowersngifts@gmail.com?subject='+encodeURIComponent('Order '+orderId+' – '+v('fOccasion')+' – '+v('fName'))+'&body='+encodeURIComponent(text);
+  document.getElementById('orderIdShow').textContent=orderId;
+  currentOrder={id:orderId,text,name:v('fName'),phone:v('fPhone'),occasion:v('fOccasion'),sent:false};
   document.getElementById('formMsg').classList.add('show');
   document.getElementById('formMsg').scrollIntoView({behavior:'smooth',block:'center'});
 });
+// Automatic email copy of each order (via FormSubmit, free form-to-email service)
+let currentOrder=null;
+const ORDER_COPY_EMAIL='samflowersngifts@gmail.com';
+function emailCopy(channel){
+  if(!currentOrder||currentOrder.sent) return;
+  currentOrder.sent=true;
+  try{
+    fetch('https://formsubmit.co/ajax/'+ORDER_COPY_EMAIL,{
+      method:'POST',keepalive:true,
+      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify({
+        _subject:'New website order '+currentOrder.id+' – '+currentOrder.occasion,
+        _template:'box',
+        'Order ID':currentOrder.id,
+        'Sent by customer via':channel,
+        'Customer name':currentOrder.name,
+        'Customer phone':currentOrder.phone,
+        'Order details':currentOrder.text
+      })
+    }).catch(()=>{});
+  }catch(err){}
+}
+document.getElementById('waSend').addEventListener('click',()=>emailCopy('WhatsApp'));
+document.getElementById('mailSend').addEventListener('click',()=>emailCopy('Email'));
 document.getElementById('copyBtn').addEventListener('click',async()=>{
   try{await navigator.clipboard.writeText(document.getElementById('summary').textContent);toast('📋 Summary copied!');}
   catch(err){toast('Select the text above and copy it');}
