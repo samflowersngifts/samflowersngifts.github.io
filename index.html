@@ -227,7 +227,33 @@
   .steps b{display:block;color:var(--maroon)}
   .steps span{font-size:.88rem;color:var(--muted)}
   .contact-box{margin-top:26px;background:#fff;border-radius:16px;padding:20px 22px;box-shadow:0 4px 16px rgba(90,21,40,.06);font-size:.92rem}
-  .contact-box div{padding:5px 0}
+  .contact-box div{padding:6px 0;line-height:1.5}
+  .c-link{color:var(--rose-dark);font-weight:500;word-break:break-word}
+  .c-link:hover{text-decoration:underline}
+  .c-actions{display:flex;gap:10px;flex-wrap:wrap;padding-top:12px!important}
+  .btn-wa{background:#25d366;color:#fff;box-shadow:0 8px 20px rgba(37,211,102,.3)}
+  .btn-wa:hover{background:#1ebe5a;transform:translateY(-2px)}
+  .btn-sm{padding:10px 20px}
+  .send-row{display:flex;gap:10px;flex-wrap:wrap}
+  .visit{background:#fff}
+  .visit-grid{display:grid;grid-template-columns:1.3fr .7fr;gap:30px;align-items:stretch}
+  .map-box{border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);min-height:380px;background:var(--blush);position:relative}
+  .map-box iframe{width:100%;height:100%;min-height:380px;border:0;display:block}
+  .map-fallback{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:20px;color:var(--muted);z-index:0}
+  .map-box iframe{position:relative;z-index:1}
+  .visit-card{background:var(--cream);border-radius:var(--radius);padding:30px;box-shadow:var(--shadow);text-align:center;display:flex;flex-direction:column;align-items:center;gap:14px}
+  .visit-card .qr{width:190px;height:190px;padding:10px;background:#fff;border:2.5px solid var(--gold);border-radius:16px}
+  .visit-card .qr img{width:100%;height:100%;display:block}
+  .qr-only{display:flex;flex-direction:column;align-items:center;gap:12px}
+  .qr-only .qr{width:220px;height:220px;padding:12px;background:#fff;border:2.5px solid var(--gold);border-radius:18px;box-shadow:var(--shadow);display:block}
+  .qr-only .qr img{width:100%;height:100%;display:block}
+  .qr-cap{font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+  .visit-card h3{color:var(--maroon);font-size:1.4rem}
+  .visit-card p{font-size:.9rem;color:var(--muted)}
+  .visit-card .addr{font-size:.92rem;color:var(--ink);line-height:1.6}
+  @media (max-width:980px){.visit-grid{grid-template-columns:1fr}}
+  .wa-float{position:fixed;right:22px;bottom:22px;z-index:80;width:58px;height:58px;border-radius:50%;background:#25d366;color:#fff;display:grid;place-items:center;font-size:1.7rem;box-shadow:0 8px 24px rgba(37,211,102,.45);transition:.25s}
+  .wa-float:hover{transform:scale(1.08)}
   form.order{background:#fff;border-radius:var(--radius);padding:36px;box-shadow:var(--shadow)}
   .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
   .field{margin-bottom:16px}
@@ -318,6 +344,7 @@
       <li><a href="#why">Why SAM</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#order">Order</a></li>
+      <li><a href="#visit">Visit Us</a></li>
     </ul>
     <div class="nav-right">
       <button class="basket-btn" id="basketBtn" aria-label="Open gift basket">🧺<span class="basket-count" id="basketCount">0</span></button>
@@ -574,9 +601,13 @@
         <li><div><b>We deliver the smile</b><span>We confirm your order and deliver it with love.</span></div></li>
       </ul>
       <div class="contact-box">
-        <div>📞 <b>Phone / WhatsApp:</b> <span id="cPhone">+91 XXXXX XXXXX</span></div>
-        <div>✉️ <b>Email:</b> <span id="cEmail">hello@sam-gifts.in</span></div>
-        <div>📍 <b>Location:</b> <span id="cCity">Pune, Maharashtra</span></div>
+        <div>💬 <b>WhatsApp / Phone:</b> <a href="https://wa.me/919850007904" target="_blank" rel="noopener" class="c-link">+91 98500 07904</a></div>
+        <div>✉️ <b>Email:</b> <a href="mailto:samflowersngifts@gmail.com" class="c-link">samflowersngifts@gmail.com</a></div>
+        <div>📍 <b>Shop Address:</b> <a href="https://maps.google.com/?cid=5962559455701252064" target="_blank" rel="noopener" class="c-link">2044/49, Sadashiv Peth, Abhinav College Corner, in the chowk of Acharya Atre Sabhagruha, Tilak Road, Pune 411030</a></div>
+        <div class="c-actions">
+          <a href="https://wa.me/919850007904?text=Hi%20SAM%2C%20I%27d%20like%20to%20place%20an%20order%20%F0%9F%8C%B8" target="_blank" rel="noopener" class="btn btn-wa">💬 Chat on WhatsApp</a>
+          <a href="tel:+919850007904" class="btn btn-outline btn-sm">📞 Call</a>
+        </div>
       </div>
     </div>
 
@@ -610,11 +641,30 @@
       <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">Prepare My Order ❤️</button>
       <div class="form-msg" id="formMsg">
         <h4>🎉 Your order summary is ready!</h4>
-        <p style="font-size:.88rem;color:var(--muted)">Copy it and send it to us on WhatsApp or email to confirm your order.</p>
+        <p style="font-size:.88rem;color:var(--muted)">Send it to us on WhatsApp or email, and we'll confirm price, availability and delivery.</p>
         <pre id="summary"></pre>
-        <button type="button" class="btn btn-outline" id="copyBtn">📋 Copy Summary</button>
+        <div class="send-row">
+          <a class="btn btn-wa" id="waSend" href="https://wa.me/919850007904" target="_blank" rel="noopener">💬 Send on WhatsApp</a>
+          <a class="btn btn-outline" id="mailSend" href="mailto:samflowersngifts@gmail.com">✉️ Send by Email</a>
+          <button type="button" class="btn btn-outline" id="copyBtn">📋 Copy</button>
+        </div>
+        <p style="font-size:.8rem;color:var(--muted);margin-top:10px">WhatsApp: +91 98500 07904 · Email: samflowersngifts@gmail.com</p>
       </div>
     </form>
+  </div>
+</section>
+
+<!-- VISIT -->
+<section class="visit" id="visit">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">📍 Visit Our Shop</span>
+      <h2>Come see our flowers in person</h2>
+    </div>
+    <div class="qr-only">
+      <a href="https://maps.google.com/?cid=5962559455701252064" target="_blank" rel="noopener" class="qr" aria-label="Open SAM shop location in Google Maps"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0NSA0NSIgc2hhcGUtcmVuZGVyaW5nPSJjcmlzcEVkZ2VzIj48cmVjdCB3aWR0aD0iNDUiIGhlaWdodD0iNDUiIGZpbGw9IiNmZmYiLz48cGF0aCBkPSJNMiAyaDF2MWgtMXpNMyAyaDF2MWgtMXpNNCAyaDF2MWgtMXpNNSAyaDF2MWgtMXpNNiAyaDF2MWgtMXpNNyAyaDF2MWgtMXpNOCAyaDF2MWgtMXpNMTAgMmgxdjFoLTF6TTExIDJoMXYxaC0xek0xMiAyaDF2MWgtMXpNMTMgMmgxdjFoLTF6TTE2IDJoMXYxaC0xek0xNyAyaDF2MWgtMXpNMTggMmgxdjFoLTF6TTE5IDJoMXYxaC0xek0yNSAyaDF2MWgtMXpNMjYgMmgxdjFoLTF6TTI5IDJoMXYxaC0xek0zMCAyaDF2MWgtMXpNMzEgMmgxdjFoLTF6TTMzIDJoMXYxaC0xek0zNCAyaDF2MWgtMXpNMzYgMmgxdjFoLTF6TTM3IDJoMXYxaC0xek0zOCAyaDF2MWgtMXpNMzkgMmgxdjFoLTF6TTQwIDJoMXYxaC0xek00MSAyaDF2MWgtMXpNNDIgMmgxdjFoLTF6TTIgM2gxdjFoLTF6TTggM2gxdjFoLTF6TTEwIDNoMXYxaC0xek0xMSAzaDF2MWgtMXpNMTMgM2gxdjFoLTF6TTE1IDNoMXYxaC0xek0xNiAzaDF2MWgtMXpNMTcgM2gxdjFoLTF6TTE4IDNoMXYxaC0xek0yNiAzaDF2MWgtMXpNMjkgM2gxdjFoLTF6TTMwIDNoMXYxaC0xek0zMiAzaDF2MWgtMXpNMzQgM2gxdjFoLTF6TTM2IDNoMXYxaC0xek00MiAzaDF2MWgtMXpNMiA0aDF2MWgtMXpNNCA0aDF2MWgtMXpNNSA0aDF2MWgtMXpNNiA0aDF2MWgtMXpNOCA0aDF2MWgtMXpNMTIgNGgxdjFoLTF6TTEzIDRoMXYxaC0xek0xNSA0aDF2MWgtMXpNMTcgNGgxdjFoLTF6TTIxIDRoMXYxaC0xek0yMyA0aDF2MWgtMXpNMjYgNGgxdjFoLTF6TTI4IDRoMXYxaC0xek0yOSA0aDF2MWgtMXpNMzAgNGgxdjFoLTF6TTMyIDRoMXYxaC0xek0zNCA0aDF2MWgtMXpNMzYgNGgxdjFoLTF6TTM4IDRoMXYxaC0xek0zOSA0aDF2MWgtMXpNNDAgNGgxdjFoLTF6TTQyIDRoMXYxaC0xek0yIDVoMXYxaC0xek00IDVoMXYxaC0xek01IDVoMXYxaC0xek02IDVoMXYxaC0xek04IDVoMXYxaC0xek0xMCA1aDF2MWgtMXpNMTEgNWgxdjFoLTF6TTE0IDVoMXYxaC0xek0xNSA1aDF2MWgtMXpNMTYgNWgxdjFoLTF6TTE3IDVoMXYxaC0xek0yMiA1aDF2MWgtMXpNMjMgNWgxdjFoLTF6TTI0IDVoMXYxaC0xek0yNyA1aDF2MWgtMXpNMjkgNWgxdjFoLTF6TTMwIDVoMXYxaC0xek0zMSA1aDF2MWgtMXpNMzIgNWgxdjFoLTF6TTMzIDVoMXYxaC0xek0zNiA1aDF2MWgtMXpNMzggNWgxdjFoLTF6TTM5IDVoMXYxaC0xek00MCA1aDF2MWgtMXpNNDIgNWgxdjFoLTF6TTIgNmgxdjFoLTF6TTQgNmgxdjFoLTF6TTUgNmgxdjFoLTF6TTYgNmgxdjFoLTF6TTggNmgxdjFoLTF6TTEwIDZoMXYxaC0xek0xMSA2aDF2MWgtMXpNMTMgNmgxdjFoLTF6TTE0IDZoMXYxaC0xek0xNSA2aDF2MWgtMXpNMTYgNmgxdjFoLTF6TTE3IDZoMXYxaC0xek0xOCA2aDF2MWgtMXpNMjIgNmgxdjFoLTF6TTI0IDZoMXYxaC0xek0yNSA2aDF2MWgtMXpNMjYgNmgxdjFoLTF6TTI3IDZoMXYxaC0xek0yOSA2aDF2MWgtMXpNMzEgNmgxdjFoLTF6TTMyIDZoMXYxaC0xek0zNCA2aDF2MWgtMXpNMzYgNmgxdjFoLTF6TTM4IDZoMXYxaC0xek0zOSA2aDF2MWgtMXpNNDAgNmgxdjFoLTF6TTQyIDZoMXYxaC0xek0yIDdoMXYxaC0xek04IDdoMXYxaC0xek0xMCA3aDF2MWgtMXpNMTIgN2gxdjFoLTF6TTE0IDdoMXYxaC0xek0xNSA3aDF2MWgtMXpNMTggN2gxdjFoLTF6TTE5IDdoMXYxaC0xek0yNCA3aDF2MWgtMXpNMjcgN2gxdjFoLTF6TTI4IDdoMXYxaC0xek0yOSA3aDF2MWgtMXpNMzIgN2gxdjFoLTF6TTMzIDdoMXYxaC0xek0zNiA3aDF2MWgtMXpNNDIgN2gxdjFoLTF6TTIgOGgxdjFoLTF6TTMgOGgxdjFoLTF6TTQgOGgxdjFoLTF6TTUgOGgxdjFoLTF6TTYgOGgxdjFoLTF6TTcgOGgxdjFoLTF6TTggOGgxdjFoLTF6TTEwIDhoMXYxaC0xek0xMiA4aDF2MWgtMXpNMTQgOGgxdjFoLTF6TTE2IDhoMXYxaC0xek0xOCA4aDF2MWgtMXpNMjAgOGgxdjFoLTF6TTIyIDhoMXYxaC0xek0yNCA4aDF2MWgtMXpNMjYgOGgxdjFoLTF6TTI4IDhoMXYxaC0xek0zMCA4aDF2MWgtMXpNMzIgOGgxdjFoLTF6TTM0IDhoMXYxaC0xek0zNiA4aDF2MWgtMXpNMzcgOGgxdjFoLTF6TTM4IDhoMXYxaC0xek0zOSA4aDF2MWgtMXpNNDAgOGgxdjFoLTF6TTQxIDhoMXYxaC0xek00MiA4aDF2MWgtMXpNMTQgOWgxdjFoLTF6TTE2IDloMXYxaC0xek0xOCA5aDF2MWgtMXpNMjQgOWgxdjFoLTF6TTI2IDloMXYxaC0xek0yOCA5aDF2MWgtMXpNMjkgOWgxdjFoLTF6TTMxIDloMXYxaC0xek0zMiA5aDF2MWgtMXpNMzQgOWgxdjFoLTF6TTUgMTBoMXYxaC0xek04IDEwaDF2MWgtMXpNMTIgMTBoMXYxaC0xek0xNSAxMGgxdjFoLTF6TTE3IDEwaDF2MWgtMXpNMTkgMTBoMXYxaC0xek0yMiAxMGgxdjFoLTF6TTI2IDEwaDF2MWgtMXpNMjcgMTBoMXYxaC0xek0yOCAxMGgxdjFoLTF6TTMwIDEwaDF2MWgtMXpNMzMgMTBoMXYxaC0xek0zNyAxMGgxdjFoLTF6TTM4IDEwaDF2MWgtMXpNMzkgMTBoMXYxaC0xek00MSAxMGgxdjFoLTF6TTQyIDEwaDF2MWgtMXpNNSAxMWgxdjFoLTF6TTYgMTFoMXYxaC0xek0xMCAxMWgxdjFoLTF6TTEzIDExaDF2MWgtMXpNMTYgMTFoMXYxaC0xek0xNyAxMWgxdjFoLTF6TTE4IDExaDF2MWgtMXpNMTkgMTFoMXYxaC0xek0yMyAxMWgxdjFoLTF6TTI0IDExaDF2MWgtMXpNMjUgMTFoMXYxaC0xek0zMCAxMWgxdjFoLTF6TTM0IDExaDF2MWgtMXpNMzYgMTFoMXYxaC0xek0zNyAxMWgxdjFoLTF6TTM5IDExaDF2MWgtMXpNNDAgMTFoMXYxaC0xek00MiAxMWgxdjFoLTF6TTMgMTJoMXYxaC0xek02IDEyaDF2MWgtMXpNOCAxMmgxdjFoLTF6TTEwIDEyaDF2MWgtMXpNMTEgMTJoMXYxaC0xek0xNSAxMmgxdjFoLTF6TTE2IDEyaDF2MWgtMXpNMTcgMTJoMXYxaC0xek0xOSAxMmgxdjFoLTF6TTIwIDEyaDF2MWgtMXpNMjEgMTJoMXYxaC0xek0yNiAxMmgxdjFoLTF6TTI4IDEyaDF2MWgtMXpNMzEgMTJoMXYxaC0xek0zMyAxMmgxdjFoLTF6TTM1IDEyaDF2MWgtMXpNMzYgMTJoMXYxaC0xek0zNyAxMmgxdjFoLTF6TTM4IDEyaDF2MWgtMXpNMzkgMTJoMXYxaC0xek00MCAxMmgxdjFoLTF6TTIgMTNoMXYxaC0xek00IDEzaDF2MWgtMXpNNSAxM2gxdjFoLTF6TTYgMTNoMXYxaC0xek0xMCAxM2gxdjFoLTF6TTExIDEzaDF2MWgtMXpNMTUgMTNoMXYxaC0xek0xNiAxM2gxdjFoLTF6TTE3IDEzaDF2MWgtMXpNMTggMTNoMXYxaC0xek0xOSAxM2gxdjFoLTF6TTIyIDEzaDF2MWgtMXpNMjYgMTNoMXYxaC0xek0yOCAxM2gxdjFoLTF6TTMwIDEzaDF2MWgtMXpNMzIgMTNoMXYxaC0xek0zNSAxM2gxdjFoLTF6TTM2IDEzaDF2MWgtMXpNMzcgMTNoMXYxaC0xek00MCAxM2gxdjFoLTF6TTQxIDEzaDF2MWgtMXpNNDIgMTNoMXYxaC0xek02IDE0aDF2MWgtMXpNOCAxNGgxdjFoLTF6TTkgMTRoMXYxaC0xek0xMSAxNGgxdjFoLTF6TTEyIDE0aDF2MWgtMXpNMTQgMTRoMXYxaC0xek0xNiAxNGgxdjFoLTF6TTIyIDE0aDF2MWgtMXpNMjMgMTRoMXYxaC0xek0yNSAxNGgxdjFoLTF6TTI3IDE0aDF2MWgtMXpNMjkgMTRoMXYxaC0xek0zMCAxNGgxdjFoLTF6TTMxIDE0aDF2MWgtMXpNMzIgMTRoMXYxaC0xek0zMyAxNGgxdjFoLTF6TTM1IDE0aDF2MWgtMXpNMzkgMTRoMXYxaC0xek00MiAxNGgxdjFoLTF6TTIgMTVoMXYxaC0xek00IDE1aDF2MWgtMXpNNSAxNWgxdjFoLTF6TTYgMTVoMXYxaC0xek03IDE1aDF2MWgtMXpNOSAxNWgxdjFoLTF6TTEyIDE1aDF2MWgtMXpNMTcgMTVoMXYxaC0xek0xOSAxNWgxdjFoLTF6TTIxIDE1aDF2MWgtMXpNMjIgMTVoMXYxaC0xek0yNCAxNWgxdjFoLTF6TTI1IDE1aDF2MWgtMXpNMjYgMTVoMXYxaC0xek0yNyAxNWgxdjFoLTF6TTI5IDE1aDF2MWgtMXpNMzEgMTVoMXYxaC0xek0zMiAxNWgxdjFoLTF6TTM1IDE1aDF2MWgtMXpNMzYgMTVoMXYxaC0xek0zNyAxNWgxdjFoLTF6TTM5IDE1aDF2MWgtMXpNNDAgMTVoMXYxaC0xek00IDE2aDF2MWgtMXpNNyAxNmgxdjFoLTF6TTggMTZoMXYxaC0xek05IDE2aDF2MWgtMXpNMTAgMTZoMXYxaC0xek0xMSAxNmgxdjFoLTF6TTEyIDE2aDF2MWgtMXpNMTUgMTZoMXYxaC0xek0xNyAxNmgxdjFoLTF6TTE4IDE2aDF2MWgtMXpNMjIgMTZoMXYxaC0xek0yMyAxNmgxdjFoLTF6TTI0IDE2aDF2MWgtMXpNMjUgMTZoMXYxaC0xek0yNyAxNmgxdjFoLTF6TTI4IDE2aDF2MWgtMXpNMjkgMTZoMXYxaC0xek0zMCAxNmgxdjFoLTF6TTMxIDE2aDF2MWgtMXpNMzQgMTZoMXYxaC0xek0zNiAxNmgxdjFoLTF6TTM4IDE2aDF2MWgtMXpNMzkgMTZoMXYxaC0xek00MCAxNmgxdjFoLTF6TTQyIDE2aDF2MWgtMXpNMiAxN2gxdjFoLTF6TTUgMTdoMXYxaC0xek02IDE3aDF2MWgtMXpNNyAxN2gxdjFoLTF6TTkgMTdoMXYxaC0xek0xMCAxN2gxdjFoLTF6TTEyIDE3aDF2MWgtMXpNMTQgMTdoMXYxaC0xek0xNiAxN2gxdjFoLTF6TTE3IDE3aDF2MWgtMXpNMTggMTdoMXYxaC0xek0xOSAxN2gxdjFoLTF6TTI0IDE3aDF2MWgtMXpNMjUgMTdoMXYxaC0xek0yNyAxN2gxdjFoLTF6TTMwIDE3aDF2MWgtMXpNMzEgMTdoMXYxaC0xek0zMiAxN2gxdjFoLTF6TTMzIDE3aDF2MWgtMXpNMzYgMTdoMXYxaC0xek00IDE4aDF2MWgtMXpNNyAxOGgxdjFoLTF6TTggMThoMXYxaC0xek05IDE4aDF2MWgtMXpNMTEgMThoMXYxaC0xek0xMiAxOGgxdjFoLTF6TTE1IDE4aDF2MWgtMXpNMTYgMThoMXYxaC0xek0xNyAxOGgxdjFoLTF6TTIxIDE4aDF2MWgtMXpNMjIgMThoMXYxaC0xek0yNSAxOGgxdjFoLTF6TTI2IDE4aDF2MWgtMXpNMjcgMThoMXYxaC0xek0yOCAxOGgxdjFoLTF6TTI5IDE4aDF2MWgtMXpNMzAgMThoMXYxaC0xek0zMSAxOGgxdjFoLTF6TTMyIDE4aDF2MWgtMXpNMzMgMThoMXYxaC0xek0zNyAxOGgxdjFoLTF6TTM5IDE4aDF2MWgtMXpNNDEgMThoMXYxaC0xek0yIDE5aDF2MWgtMXpNNCAxOWgxdjFoLTF6TTUgMTloMXYxaC0xek05IDE5aDF2MWgtMXpNMTAgMTloMXYxaC0xek0xMSAxOWgxdjFoLTF6TTEzIDE5aDF2MWgtMXpNMTQgMTloMXYxaC0xek0xNyAxOWgxdjFoLTF6TTIxIDE5aDF2MWgtMXpNMjUgMTloMXYxaC0xek0yNiAxOWgxdjFoLTF6TTI3IDE5aDF2MWgtMXpNMzIgMTloMXYxaC0xek0zNCAxOWgxdjFoLTF6TTM2IDE5aDF2MWgtMXpNMzcgMTloMXYxaC0xek0zOSAxOWgxdjFoLTF6TTQxIDE5aDF2MWgtMXpNNDIgMTloMXYxaC0xek04IDIwaDF2MWgtMXpNMTEgMjBoMXYxaC0xek0xMiAyMGgxdjFoLTF6TTEzIDIwaDF2MWgtMXpNMTUgMjBoMXYxaC0xek0xOCAyMGgxdjFoLTF6TTE5IDIwaDF2MWgtMXpNMjEgMjBoMXYxaC0xek0yNSAyMGgxdjFoLTF6TTI2IDIwaDF2MWgtMXpNMzIgMjBoMXYxaC0xek0zNCAyMGgxdjFoLTF6TTM1IDIwaDF2MWgtMXpNMzggMjBoMXYxaC0xek0zOSAyMGgxdjFoLTF6TTQwIDIwaDF2MWgtMXpNNDEgMjBoMXYxaC0xek00MiAyMGgxdjFoLTF6TTIgMjFoMXYxaC0xek01IDIxaDF2MWgtMXpNNyAyMWgxdjFoLTF6TTkgMjFoMXYxaC0xek0xMCAyMWgxdjFoLTF6TTExIDIxaDF2MWgtMXpNMTIgMjFoMXYxaC0xek0xNiAyMWgxdjFoLTF6TTE3IDIxaDF2MWgtMXpNMTggMjFoMXYxaC0xek0xOSAyMWgxdjFoLTF6TTIyIDIxaDF2MWgtMXpNMjYgMjFoMXYxaC0xek0yNyAyMWgxdjFoLTF6TTI4IDIxaDF2MWgtMXpNMjkgMjFoMXYxaC0xek0zMCAyMWgxdjFoLTF6TTMxIDIxaDF2MWgtMXpNMzIgMjFoMXYxaC0xek0zNCAyMWgxdjFoLTF6TTM1IDIxaDF2MWgtMXpNMzcgMjFoMXYxaC0xek0zIDIyaDF2MWgtMXpNNSAyMmgxdjFoLTF6TTggMjJoMXYxaC0xek05IDIyaDF2MWgtMXpNMTAgMjJoMXYxaC0xek0xMSAyMmgxdjFoLTF6TTEyIDIyaDF2MWgtMXpNMTMgMjJoMXYxaC0xek0xNCAyMmgxdjFoLTF6TTE1IDIyaDF2MWgtMXpNMjIgMjJoMXYxaC0xek0yMyAyMmgxdjFoLTF6TTI0IDIyaDF2MWgtMXpNMjUgMjJoMXYxaC0xek0yNiAyMmgxdjFoLTF6TTI3IDIyaDF2MWgtMXpNMjggMjJoMXYxaC0xek0zMCAyMmgxdjFoLTF6TTMxIDIyaDF2MWgtMXpNMzIgMjJoMXYxaC0xek0zNSAyMmgxdjFoLTF6TTM2IDIyaDF2MWgtMXpNMzcgMjJoMXYxaC0xek0zOCAyMmgxdjFoLTF6TTM5IDIyaDF2MWgtMXpNNDAgMjJoMXYxaC0xek00MSAyMmgxdjFoLTF6TTMgMjNoMXYxaC0xek01IDIzaDF2MWgtMXpNNiAyM2gxdjFoLTF6TTcgMjNoMXYxaC0xek0xMCAyM2gxdjFoLTF6TTE1IDIzaDF2MWgtMXpNMTkgMjNoMXYxaC0xek0yMCAyM2gxdjFoLTF6TTIxIDIzaDF2MWgtMXpNMjIgMjNoMXYxaC0xek0yNCAyM2gxdjFoLTF6TTI2IDIzaDF2MWgtMXpNMjcgMjNoMXYxaC0xek0yOCAyM2gxdjFoLTF6TTMwIDIzaDF2MWgtMXpNMzEgMjNoMXYxaC0xek0zMiAyM2gxdjFoLTF6TTM0IDIzaDF2MWgtMXpNMzUgMjNoMXYxaC0xek0zNiAyM2gxdjFoLTF6TTM3IDIzaDF2MWgtMXpNMzkgMjNoMXYxaC0xek00MSAyM2gxdjFoLTF6TTQyIDIzaDF2MWgtMXpNMiAyNGgxdjFoLTF6TTMgMjRoMXYxaC0xek00IDI0aDF2MWgtMXpNNyAyNGgxdjFoLTF6TTggMjRoMXYxaC0xek0xMCAyNGgxdjFoLTF6TTExIDI0aDF2MWgtMXpNMTggMjRoMXYxaC0xek0yMCAyNGgxdjFoLTF6TTIxIDI0aDF2MWgtMXpNMjIgMjRoMXYxaC0xek0yMyAyNGgxdjFoLTF6TTI0IDI0aDF2MWgtMXpNMjUgMjRoMXYxaC0xek0zMCAyNGgxdjFoLTF6TTMyIDI0aDF2MWgtMXpNMzMgMjRoMXYxaC0xek0zNSAyNGgxdjFoLTF6TTM4IDI0aDF2MWgtMXpNMzkgMjRoMXYxaC0xek00MCAyNGgxdjFoLTF6TTQxIDI0aDF2MWgtMXpNMiAyNWgxdjFoLTF6TTMgMjVoMXYxaC0xek00IDI1aDF2MWgtMXpNNiAyNWgxdjFoLTF6TTcgMjVoMXYxaC0xek0xMSAyNWgxdjFoLTF6TTEyIDI1aDF2MWgtMXpNMTMgMjVoMXYxaC0xek0xNiAyNWgxdjFoLTF6TTE3IDI1aDF2MWgtMXpNMTggMjVoMXYxaC0xek0xOSAyNWgxdjFoLTF6TTIxIDI1aDF2MWgtMXpNMjQgMjVoMXYxaC0xek0yNSAyNWgxdjFoLTF6TTI3IDI1aDF2MWgtMXpNMjkgMjVoMXYxaC0xek0zMiAyNWgxdjFoLTF6TTM3IDI1aDF2MWgtMXpNMzkgMjVoMXYxaC0xek00MCAyNWgxdjFoLTF6TTQxIDI1aDF2MWgtMXpNMyAyNmgxdjFoLTF6TTUgMjZoMXYxaC0xek03IDI2aDF2MWgtMXpNOCAyNmgxdjFoLTF6TTkgMjZoMXYxaC0xek0xMiAyNmgxdjFoLTF6TTEzIDI2aDF2MWgtMXpNMTYgMjZoMXYxaC0xek0xNyAyNmgxdjFoLTF6TTE4IDI2aDF2MWgtMXpNMTkgMjZoMXYxaC0xek0yMCAyNmgxdjFoLTF6TTIyIDI2aDF2MWgtMXpNMjMgMjZoMXYxaC0xek0yNiAyNmgxdjFoLTF6TTI3IDI2aDF2MWgtMXpNMjkgMjZoMXYxaC0xek0zMCAyNmgxdjFoLTF6TTMxIDI2aDF2MWgtMXpNMzMgMjZoMXYxaC0xek0zNCAyNmgxdjFoLTF6TTM2IDI2aDF2MWgtMXpNMzcgMjZoMXYxaC0xek0zOSAyNmgxdjFoLTF6TTQyIDI2aDF2MWgtMXpNMiAyN2gxdjFoLTF6TTMgMjdoMXYxaC0xek01IDI3aDF2MWgtMXpNMTAgMjdoMXYxaC0xek0xMSAyN2gxdjFoLTF6TTEyIDI3aDF2MWgtMXpNMTUgMjdoMXYxaC0xek0xNiAyN2gxdjFoLTF6TTE3IDI3aDF2MWgtMXpNMjIgMjdoMXYxaC0xek0yMyAyN2gxdjFoLTF6TTI1IDI3aDF2MWgtMXpNMjcgMjdoMXYxaC0xek0zMCAyN2gxdjFoLTF6TTMyIDI3aDF2MWgtMXpNMzMgMjdoMXYxaC0xek0zNyAyN2gxdjFoLTF6TTM5IDI3aDF2MWgtMXpNMiAyOGgxdjFoLTF6TTQgMjhoMXYxaC0xek04IDI4aDF2MWgtMXpNOSAyOGgxdjFoLTF6TTEwIDI4aDF2MWgtMXpNMTMgMjhoMXYxaC0xek0xNCAyOGgxdjFoLTF6TTE1IDI4aDF2MWgtMXpNMTcgMjhoMXYxaC0xek0xOSAyOGgxdjFoLTF6TTIwIDI4aDF2MWgtMXpNMjMgMjhoMXYxaC0xek0yNiAyOGgxdjFoLTF6TTI4IDI4aDF2MWgtMXpNMzQgMjhoMXYxaC0xek0zNiAyOGgxdjFoLTF6TTM3IDI4aDF2MWgtMXpNNDIgMjhoMXYxaC0xek0zIDI5aDF2MWgtMXpNNSAyOWgxdjFoLTF6TTYgMjloMXYxaC0xek05IDI5aDF2MWgtMXpNMTIgMjloMXYxaC0xek0xNiAyOWgxdjFoLTF6TTE3IDI5aDF2MWgtMXpNMTggMjloMXYxaC0xek0yMCAyOWgxdjFoLTF6TTI0IDI5aDF2MWgtMXpNMjUgMjloMXYxaC0xek0yNiAyOWgxdjFoLTF6TTI3IDI5aDF2MWgtMXpNMzEgMjloMXYxaC0xek0zMiAyOWgxdjFoLTF6TTM0IDI5aDF2MWgtMXpNMzcgMjloMXYxaC0xek0yIDMwaDF2MWgtMXpNMyAzMGgxdjFoLTF6TTYgMzBoMXYxaC0xek03IDMwaDF2MWgtMXpNOCAzMGgxdjFoLTF6TTkgMzBoMXYxaC0xek0xMCAzMGgxdjFoLTF6TTEzIDMwaDF2MWgtMXpNMTcgMzBoMXYxaC0xek0yMyAzMGgxdjFoLTF6TTI3IDMwaDF2MWgtMXpNMjggMzBoMXYxaC0xek0zMCAzMGgxdjFoLTF6TTMxIDMwaDF2MWgtMXpNMzQgMzBoMXYxaC0xek00MSAzMGgxdjFoLTF6TTYgMzFoMXYxaC0xek03IDMxaDF2MWgtMXpNMTEgMzFoMXYxaC0xek0xNSAzMWgxdjFoLTF6TTE4IDMxaDF2MWgtMXpNMTkgMzFoMXYxaC0xek0yNCAzMWgxdjFoLTF6TTI1IDMxaDF2MWgtMXpNMjYgMzFoMXYxaC0xek0yNyAzMWgxdjFoLTF6TTI5IDMxaDF2MWgtMXpNMzMgMzFoMXYxaC0xek0zNyAzMWgxdjFoLTF6TTQwIDMxaDF2MWgtMXpNNDIgMzFoMXYxaC0xek0yIDMyaDF2MWgtMXpNNCAzMmgxdjFoLTF6TTUgMzJoMXYxaC0xek03IDMyaDF2MWgtMXpNOCAzMmgxdjFoLTF6TTEwIDMyaDF2MWgtMXpNMTQgMzJoMXYxaC0xek0xOCAzMmgxdjFoLTF6TTIxIDMyaDF2MWgtMXpNMjQgMzJoMXYxaC0xek0yNiAzMmgxdjFoLTF6TTI3IDMyaDF2MWgtMXpNMzEgMzJoMXYxaC0xek0zMyAzMmgxdjFoLTF6TTM0IDMyaDF2MWgtMXpNMzggMzJoMXYxaC0xek0zOSAzMmgxdjFoLTF6TTQyIDMyaDF2MWgtMXpNNCAzM2gxdjFoLTF6TTUgMzNoMXYxaC0xek02IDMzaDF2MWgtMXpNNyAzM2gxdjFoLTF6TTEwIDMzaDF2MWgtMXpNMTEgMzNoMXYxaC0xek0xMyAzM2gxdjFoLTF6TTE0IDMzaDF2MWgtMXpNMTUgMzNoMXYxaC0xek0xNiAzM2gxdjFoLTF6TTIwIDMzaDF2MWgtMXpNMjIgMzNoMXYxaC0xek0yMyAzM2gxdjFoLTF6TTI0IDMzaDF2MWgtMXpNMjUgMzNoMXYxaC0xek0yNiAzM2gxdjFoLTF6TTI3IDMzaDF2MWgtMXpNMjkgMzNoMXYxaC0xek0zMCAzM2gxdjFoLTF6TTMxIDMzaDF2MWgtMXpNMzIgMzNoMXYxaC0xek0zMyAzM2gxdjFoLTF6TTM0IDMzaDF2MWgtMXpNMzUgMzNoMXYxaC0xek0zOCAzM2gxdjFoLTF6TTM5IDMzaDF2MWgtMXpNNDIgMzNoMXYxaC0xek0yIDM0aDF2MWgtMXpNMyAzNGgxdjFoLTF6TTUgMzRoMXYxaC0xek02IDM0aDF2MWgtMXpNOCAzNGgxdjFoLTF6TTkgMzRoMXYxaC0xek0xMCAzNGgxdjFoLTF6TTE1IDM0aDF2MWgtMXpNMTcgMzRoMXYxaC0xek0xOCAzNGgxdjFoLTF6TTE5IDM0aDF2MWgtMXpNMjEgMzRoMXYxaC0xek0yMiAzNGgxdjFoLTF6TTIzIDM0aDF2MWgtMXpNMjcgMzRoMXYxaC0xek0zMiAzNGgxdjFoLTF6TTMzIDM0aDF2MWgtMXpNMzQgMzRoMXYxaC0xek0zNSAzNGgxdjFoLTF6TTM2IDM0aDF2MWgtMXpNMzcgMzRoMXYxaC0xek0zOCAzNGgxdjFoLTF6TTQwIDM0aDF2MWgtMXpNNDEgMzRoMXYxaC0xek0xMCAzNWgxdjFoLTF6TTEyIDM1aDF2MWgtMXpNMTMgMzVoMXYxaC0xek0xNCAzNWgxdjFoLTF6TTE1IDM1aDF2MWgtMXpNMTkgMzVoMXYxaC0xek0yMCAzNWgxdjFoLTF6TTIxIDM1aDF2MWgtMXpNMjIgMzVoMXYxaC0xek0yNCAzNWgxdjFoLTF6TTI1IDM1aDF2MWgtMXpNMjcgMzVoMXYxaC0xek0zMiAzNWgxdjFoLTF6TTM0IDM1aDF2MWgtMXpNMzggMzVoMXYxaC0xek00MSAzNWgxdjFoLTF6TTQyIDM1aDF2MWgtMXpNMiAzNmgxdjFoLTF6TTMgMzZoMXYxaC0xek00IDM2aDF2MWgtMXpNNSAzNmgxdjFoLTF6TTYgMzZoMXYxaC0xek03IDM2aDF2MWgtMXpNOCAzNmgxdjFoLTF6TTExIDM2aDF2MWgtMXpNMTMgMzZoMXYxaC0xek0xNiAzNmgxdjFoLTF6TTE3IDM2aDF2MWgtMXpNMTggMzZoMXYxaC0xek0yMiAzNmgxdjFoLTF6TTIzIDM2aDF2MWgtMXpNMjUgMzZoMXYxaC0xek0zMSAzNmgxdjFoLTF6TTM0IDM2aDF2MWgtMXpNMzYgMzZoMXYxaC0xek0zOCAzNmgxdjFoLTF6TTM5IDM2aDF2MWgtMXpNNDEgMzZoMXYxaC0xek0yIDM3aDF2MWgtMXpNOCAzN2gxdjFoLTF6TTExIDM3aDF2MWgtMXpNMTMgMzdoMXYxaC0xek0xOSAzN2gxdjFoLTF6TTIwIDM3aDF2MWgtMXpNMjEgMzdoMXYxaC0xek0yMyAzN2gxdjFoLTF6TTI0IDM3aDF2MWgtMXpNMjYgMzdoMXYxaC0xek0yOCAzN2gxdjFoLTF6TTI5IDM3aDF2MWgtMXpNMzEgMzdoMXYxaC0xek0zMyAzN2gxdjFoLTF6TTM0IDM3aDF2MWgtMXpNMzggMzdoMXYxaC0xek0zOSAzN2gxdjFoLTF6TTQwIDM3aDF2MWgtMXpNNDIgMzdoMXYxaC0xek0yIDM4aDF2MWgtMXpNNCAzOGgxdjFoLTF6TTUgMzhoMXYxaC0xek02IDM4aDF2MWgtMXpNOCAzOGgxdjFoLTF6TTExIDM4aDF2MWgtMXpNMTUgMzhoMXYxaC0xek0xNyAzOGgxdjFoLTF6TTE5IDM4aDF2MWgtMXpNMjAgMzhoMXYxaC0xek0yMSAzOGgxdjFoLTF6TTIyIDM4aDF2MWgtMXpNMjMgMzhoMXYxaC0xek0yNCAzOGgxdjFoLTF6TTI1IDM4aDF2MWgtMXpNMjYgMzhoMXYxaC0xek0zMCAzOGgxdjFoLTF6TTM0IDM4aDF2MWgtMXpNMzUgMzhoMXYxaC0xek0zNiAzOGgxdjFoLTF6TTM3IDM4aDF2MWgtMXpNMzggMzhoMXYxaC0xek0zOSAzOGgxdjFoLTF6TTQxIDM4aDF2MWgtMXpNNDIgMzhoMXYxaC0xek0yIDM5aDF2MWgtMXpNNCAzOWgxdjFoLTF6TTUgMzloMXYxaC0xek02IDM5aDF2MWgtMXpNOCAzOWgxdjFoLTF6TTEwIDM5aDF2MWgtMXpNMTMgMzloMXYxaC0xek0xNSAzOWgxdjFoLTF6TTE3IDM5aDF2MWgtMXpNMjIgMzloMXYxaC0xek0yMyAzOWgxdjFoLTF6TTI2IDM5aDF2MWgtMXpNMjcgMzloMXYxaC0xek0yOCAzOWgxdjFoLTF6TTMxIDM5aDF2MWgtMXpNMzMgMzloMXYxaC0xek0zNSAzOWgxdjFoLTF6TTM2IDM5aDF2MWgtMXpNMzggMzloMXYxaC0xek0zOSAzOWgxdjFoLTF6TTIgNDBoMXYxaC0xek00IDQwaDF2MWgtMXpNNSA0MGgxdjFoLTF6TTYgNDBoMXYxaC0xek04IDQwaDF2MWgtMXpNMTIgNDBoMXYxaC0xek0xMyA0MGgxdjFoLTF6TTE4IDQwaDF2MWgtMXpNMjAgNDBoMXYxaC0xek0yMSA0MGgxdjFoLTF6TTIzIDQwaDF2MWgtMXpNMjQgNDBoMXYxaC0xek0yOCA0MGgxdjFoLTF6TTMxIDQwaDF2MWgtMXpNMzIgNDBoMXYxaC0xek0zNCA0MGgxdjFoLTF6TTM4IDQwaDF2MWgtMXpNNDAgNDBoMXYxaC0xek00MiA0MGgxdjFoLTF6TTIgNDFoMXYxaC0xek04IDQxaDF2MWgtMXpNMTEgNDFoMXYxaC0xek0xNCA0MWgxdjFoLTF6TTE1IDQxaDF2MWgtMXpNMTYgNDFoMXYxaC0xek0xOCA0MWgxdjFoLTF6TTE5IDQxaDF2MWgtMXpNMjEgNDFoMXYxaC0xek0yMiA0MWgxdjFoLTF6TTI0IDQxaDF2MWgtMXpNMjggNDFoMXYxaC0xek0zMSA0MWgxdjFoLTF6TTMzIDQxaDF2MWgtMXpNMzQgNDFoMXYxaC0xek0zNSA0MWgxdjFoLTF6TTM3IDQxaDF2MWgtMXpNMzkgNDFoMXYxaC0xek00MSA0MWgxdjFoLTF6TTIgNDJoMXYxaC0xek0zIDQyaDF2MWgtMXpNNCA0MmgxdjFoLTF6TTUgNDJoMXYxaC0xek02IDQyaDF2MWgtMXpNNyA0MmgxdjFoLTF6TTggNDJoMXYxaC0xek0xMSA0MmgxdjFoLTF6TTE0IDQyaDF2MWgtMXpNMTYgNDJoMXYxaC0xek0xNyA0MmgxdjFoLTF6TTE4IDQyaDF2MWgtMXpNMjAgNDJoMXYxaC0xek0yMiA0MmgxdjFoLTF6TTIzIDQyaDF2MWgtMXpNMjcgNDJoMXYxaC0xek0zMCA0MmgxdjFoLTF6TTMxIDQyaDF2MWgtMXpNMzQgNDJoMXYxaC0xek0zNSA0MmgxdjFoLTF6TTM2IDQyaDF2MWgtMXpNMzcgNDJoMXYxaC0xek0zOCA0MmgxdjFoLTF6TTQxIDQyaDF2MWgtMXoiIGZpbGw9IiMzYTBkMWEiLz48L3N2Zz4=" alt="QR code to open SAM shop location in Google Maps"></a>
+      <div class="qr-cap">Scan for directions</div>
+    </div>
   </div>
 </section>
 
@@ -634,8 +684,12 @@
         <ul><li><a href="#gifts">Mavala Statue</a></li><li><a href="#gifts">Shivaji Maharaj Statue</a></li><li><a href="#gifts">Sambhaji Maharaj Statue</a></li><li><a href="#gifts">Vitthal &amp; Swami Samarth</a></li></ul>
       </div>
       <div>
-        <h5>SAM</h5>
-        <ul><li><a href="#about">About Us</a></li><li><a href="#why">Why Choose SAM</a></li><li><a href="#order">Place an Order</a></li></ul>
+        <h5>Contact Us</h5>
+        <ul>
+          <li><a href="https://wa.me/919850007904" target="_blank" rel="noopener">💬 +91 98500 07904</a></li>
+          <li><a href="mailto:samflowersngifts@gmail.com">✉️ samflowersngifts@gmail.com</a></li>
+          <li><a href="https://maps.google.com/?cid=5962559455701252064" target="_blank" rel="noopener">📍 2044/49, Sadashiv Peth, Abhinav College Corner, near Acharya Atre Sabhagruha chowk, Tilak Road, Pune 411030</a></li>
+        </ul>
       </div>
     </div>
     <div class="foot-quote">Because every gift carries an emotion, and every delivery creates a memory.</div>
@@ -651,6 +705,7 @@
 </aside>
 
 <div class="toast" id="toast"></div>
+<a class="wa-float" href="https://wa.me/919850007904?text=Hi%20SAM%2C%20I%27d%20like%20to%20place%20an%20order%20%F0%9F%8C%B8" target="_blank" rel="noopener" aria-label="Chat with SAM on WhatsApp">💬</a>
 <div class="lightbox" id="lightbox"><button id="lbClose" aria-label="Close">×</button><figure><img id="lbImg" alt=""><figcaption id="lbCap"></figcaption></figure></div>
 
 <script>
@@ -821,7 +876,10 @@ document.getElementById('orderForm').addEventListener('submit',e=>{
     `Address: ${v('fAddress')}`,
     v('fMessage')?`Card message: "${v('fMessage')}"`:null
   ].filter(l=>l!==null);
-  document.getElementById('summary').textContent=lines.join('\n');
+  const text=lines.join('\n');
+  document.getElementById('summary').textContent=text;
+  document.getElementById('waSend').href='https://wa.me/919850007904?text='+encodeURIComponent(text);
+  document.getElementById('mailSend').href='mailto:samflowersngifts@gmail.com?subject='+encodeURIComponent('Order request – '+v('fOccasion')+' – '+v('fName'))+'&body='+encodeURIComponent(text);
   document.getElementById('formMsg').classList.add('show');
   document.getElementById('formMsg').scrollIntoView({behavior:'smooth',block:'center'});
 });
